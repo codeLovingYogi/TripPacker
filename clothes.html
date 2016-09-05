@@ -1,0 +1,4 @@
+<div class="list-group-item" ng-repeat="clothing in bag.items | filter: { category: 'Clothes' }">
+	{{ clothing.type }}
+	<em class="pull-right">Quantity: {{ clothing.quantity }}</em>
+</div>
