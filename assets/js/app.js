@@ -1,9 +1,34 @@
 (function(){
 	var app = angular.module('tripPacker', []);
 
-	app.controller('BagController', function(){
+	// app.controller('BagController', function(){
+	// 	this.items = myItems;
+	// 	this.numClothes = myItems[0];
+	// 	this.numToiletries = myItems[1];
+	// 	this.numElectronics = myItems[2];
+	// });
+
+	app.controller('BagController', ['$scope', function($scope){
 		this.items = myItems;
-	});
+		this.numClothes = myItems[0];
+		this.numToiletries = myItems[1];
+		this.numElectronics = myItems[2];
+
+		$scope.total = 0;
+		var total2 = 0;
+
+		$scope.counter = function(){
+			$scope.total += 1;
+			total2 = 0;
+			for(var i = 0; i < $scope.bag.items.length; i++){
+				total2 = total2 + parseInt($scope.bag.items[i].quantity);
+			}
+		}
+
+		$scope.getTotal = function(){
+			return total2;
+		}
+	}]);
 
 	app.directive('categoryTabs', function(){
   		return {
@@ -50,35 +75,38 @@
 	});
 
 	var myItems = [
+		// totalClothes = 0,
+		// totalToiletries = 0,
+		// totalElectronics = 0,
 		{
 			category: 'Clothes',
 			type: 'T-Shirt',
-			quantity: '1',
+			quantity: '0',
 		},
 		{
 			category: 'Clothes',
 			type: 'Pant',
-			quantity: '1',
+			quantity: '0',
 		},
 		{
 			category: 'Clothes',
 			type: 'Long-sleeved Shirt',
-			quantity: '1',
+			quantity: '0',
 		},
 		{
 			category: 'Toiletries',
 			type: 'Toothbrush',
-			quantity: '1',
+			quantity: '0',
 		},
 		{
 			category: 'Toiletries',
 			type: 'Toothpaste',
-			quantity: '1',
+			quantity: '0',
 		},
 		{
 			category: 'Electronics',
 			type: 'Laptop',
-			quantity: '1',
+			quantity: '0',
 		}
 	];
 })();
