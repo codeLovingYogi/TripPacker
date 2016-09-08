@@ -1,0 +1,8 @@
+<div class="list-group-item" ng-repeat="clothing in bag.items | filter: { category: 'Clothes' }" >
+	{{ clothing.type }}
+	<em class="pull-right">
+		<input type="number" min="0" ng-model="clothing.quantity" ng-click="counter()">
+		Quantity: {{ clothing.quantity }}</em>
+</div>
+Total Clothes: {{ getTotal() }}<br>
+<!-- Click Counter: {{cnter}} -->
