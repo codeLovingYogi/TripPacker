@@ -14,13 +14,18 @@
 		}
 
 		$scope.getTotal = function(){
-			var total2 = 0;
-			
+			var total = 0;
 			for(var i = 0; i < $scope.bag.items.length; i++){
-				total2 = total2 + parseInt($scope.bag.items[i].quantity);
+				var item = $scope.bag.items[i];
+				total = total + parseInt(item.quantity);
 			}
+			return total;
+		} 
 
-			return total2;
+		$scope.getCombination = function(){
+			var combination = 0;
+			combination = $scope.bag.items[0].quantity * $scope.bag.items[1].quantity;
+			return combination;
 		}
 	}]);
 
