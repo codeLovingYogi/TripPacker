@@ -3,23 +3,25 @@
 
 	app.controller('BagController', ['$scope', function($scope){
 		this.items = myItems;
-		// this.numClothes = totalClothes;
+		this.numClothes = totalClothes;
 		// this.numToiletries = totalToiletries;
 		// this.numElectronics = totalElectronics;
 
 		$scope.cnter = 0;
-		
 		$scope.counter = function(){
 			$scope.cnter += 1;
 		}
 
-		$scope.getTotal = function(){
+		$scope.getTotal = function(category){
 			var total = 0;
 			for(var i = 0; i < $scope.bag.items.length; i++){
-				var item = $scope.bag.items[i];
-				total = total + parseInt(item.quantity);
+				if($scope.bag.items[i].category === category){
+					var item = $scope.bag.items[i];
+					total = total + parseInt(item.quantity);
+				}
 			}
-			return total;
+			this.numClothes = total;
+			return this.numClothes;
 		} 
 
 		$scope.getCombination = function(){
@@ -73,9 +75,9 @@
 		};
 	});
 
-	// var totalClothes = 0;
-	// var totalToiletries = 0;
-	// var totalElectronics = 0;
+	var totalClothes = 0;
+	var totalToiletries = 0;
+	var totalElectronics = 0;
 	var myItems = [
 		{
 			category: 'Clothes',
