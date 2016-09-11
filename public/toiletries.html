@@ -1,7 +1,12 @@
-<div class="list-group-item" ng-repeat="toiletry in bag.items| filter: { category: 'Toiletries' }">
+<section class="list-group-item" ng-repeat="toiletry in bag.items| filter: { category: 'Toiletries' }">
+	<table>
 	{{ toiletry.type }}
 	<em class="pull-right">
 		<input type="number" min="0" ng-model="toiletry.quantity">
-		Quantity: {{ toiletry.quantity }}</em>
-</div>
-Total Toiletries: {{ getTotal('Toiletries') }}
+		<td>Quantity: {{ toiletry.quantity }}</td>
+	</em>
+	</table>
+</section>
+<aside>
+	<h3>Total Toiletries: {{ getTotal('Toiletries') }}</h3>
+</aside>

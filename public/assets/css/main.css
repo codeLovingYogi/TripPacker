@@ -1,3 +1,20 @@
+.jumbotron {
+	background: #428bca;
+	color: #FFFAF0;
+}
+
 input {
 	width: 50px;
+}
+
+h2 {
+	text-align: center;
+}
+
+td {
+	padding-left: 10px;
+}
+
+h3 {
+	text-align: right;
 }
