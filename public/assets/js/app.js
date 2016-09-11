@@ -31,6 +31,14 @@
 		}
 	}]);
 
+	app.directive('tripInfo', function(){
+  		return {
+  			restrict: 'E', 
+  			templateUrl: 'trip-info.html',
+  			controllerAs: 'trip'
+  		};	
+  	});
+
 	app.directive('categoryTabs', function(){
   		return {
   			restrict: 'E', 
