@@ -2,6 +2,7 @@
 	var app = angular.module('tripPacker', []);
 
 	app.controller('BagController', ['$scope', function($scope){
+		this.place = tripLocation
 		this.items = myItems;
 		this.numClothes = totalClothes;
 		// this.numToiletries = totalToiletries;
@@ -12,11 +13,16 @@
 			$scope.cnter += 1;
 		}
 
+		$scope.getWeather = function(){
+			var location = document.getElementbyId('location');
+			return location;
+		}
+
 		$scope.getTotal = function(category){
 			var total = 0;
-			for(var i = 0; i < $scope.bag.items.length; i++){
-				if($scope.bag.items[i].category === category){
-					var item = $scope.bag.items[i];
+			for(var i = 0; i < $scope.bagCtrl.items.length; i++){
+				if($scope.bagCtrl.items[i].category === category){
+					var item = $scope.bagCtrl.items[i];
 					total = total + parseInt(item.quantity);
 				}
 			}
@@ -26,7 +32,7 @@
 
 		$scope.getCombination = function(){
 			var combination = 0;
-			combination = $scope.bag.items[0].quantity * $scope.bag.items[1].quantity;
+			combination = $scope.bagCtrl.items[0].quantity * $scope.bagCtrl.items[1].quantity;
 			return combination;
 		}
 	}]);
@@ -38,6 +44,14 @@
   			controllerAs: 'trip'
   		};	
   	});
+
+  	app.directive('weather', function(){
+		return {
+			restrict: 'E',
+			templateUrl: 'weather.html',
+			controllerAs: 'weather'
+		};
+	});
 
 	app.directive('categoryTabs', function(){
   		return {
@@ -83,6 +97,7 @@
 		};
 	});
 
+	var tripLocation = '';
 	var totalClothes = 0;
 	var totalToiletries = 0;
 	var totalElectronics = 0;

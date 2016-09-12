@@ -1,8 +1,8 @@
-<section class="list-group-item" ng-repeat="clothing in bag.items | filter: { category: 'Clothes' }">
+<section class="list-group-item" ng-repeat="clothing in bagCtrl.items | filter: { category: 'Clothes' }">
 	<table>
 	{{ clothing.type }}
 	<em class="pull-right">
-		<input type="number" min="0" ng-model="clothing.quantity" ng-click="counter()">
+		<input class="quantity" type="number" min="0" ng-model="clothing.quantity" ng-click="counter()">
 		<td>Quantity: {{ clothing.quantity }}</td>
 	</em>
 	</table>
