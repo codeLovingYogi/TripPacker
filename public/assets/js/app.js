@@ -2,7 +2,6 @@
 	var app = angular.module('tripPacker', []);
 
 	app.controller('BagController', ['$scope', function($scope){
-		this.place = tripLocation
 		this.items = myItems;
 		this.numClothes = totalClothes;
 		// this.numToiletries = totalToiletries;
@@ -11,11 +10,6 @@
 		$scope.cnter = 0;
 		$scope.counter = function(){
 			$scope.cnter += 1;
-		}
-
-		$scope.getWeather = function(){
-			var location = document.getElementbyId('location');
-			return location;
 		}
 
 		$scope.getTotal = function(category){
@@ -34,6 +28,18 @@
 			var combination = 0;
 			combination = $scope.bagCtrl.items[0].quantity * $scope.bagCtrl.items[1].quantity;
 			return combination;
+		}
+	}]);
+
+	app.controller('WeatherController', ['$scope', function($scope){
+		this.place = tripLocation;
+		$scope.weatherStatus = '';
+
+		$scope.getWeather = function(){
+			if($scope.weatherCtrl.place){
+				//$scope.loc = $scope.weatherCtrl.place;
+				$scope.weatherStatus = 'Getting weather data for ' + $scope.weatherCtrl.place + '!';
+			}
 		}
 	}]);
 

@@ -1,5 +1,13 @@
-<label for="location"></label>
-<input ng-model="bagCtrl.place" id="location" type="text" placeholder="Enter a location">
-<button id = "getWeather" onclick = "getWeather()">Get Weather</button>
+<h2>Where are you going?</h2>
+<form class="form-inline" name="weatherForm" ng-submit="getWeather()">
+	<fieldset class="form-group">
+		<label for="location"></label>
+		<input ng-model="weatherCtrl.place" type="text" name="text" placeholder="Enter a location" required>
+	</fieldset>
+	<fieldset class="form-group">
+		<input type="submit" id ="submit" value="Get Weather">
+	</fieldset>
+</form>
+<!-- {{weatherCtrl.place}} -->
+<h4>{{weatherStatus}}</h4>
 
-{{bagCtrl.place}}
