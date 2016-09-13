@@ -1,0 +1,15 @@
+<h2>When is your trip?</h2>
+<form class="form-inline" name="datesForm" ng-submit="getDuration()">
+	<fieldset class="form-group">
+		<label for="beginDate">Start:</label>
+		<input ng-model="datesCtrl.startDate" type="date" name="startDate" required>
+	</fieldset>
+	<fieldset class="form-group">
+		<label for="endDate">End:</label>
+		<input ng-model="datesCtrl.endDate" ng-click="getDuration()" type="date" name="endDate">
+	</fieldset>
+	<fieldset class="form-group">
+		<input type="submit" id="submit" value="Submit">
+	</fieldset>
+</form>
+<h4>{{message}}</h4>

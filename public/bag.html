@@ -1,4 +1,5 @@
-<section>
+<section ng-controller="BagController as bagCtrl">
+	<h2>Let's start packing!</h2>
 	<ul class="nav nav-pills">
 		<li ng-class="{ active:panel.isSelected(1)}">
 			<a href ng-click=panel.setTab(1)>Clothes</a>

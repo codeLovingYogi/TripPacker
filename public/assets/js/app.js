@@ -17,7 +17,7 @@
 			for(var i = 0; i < $scope.bagCtrl.items.length; i++){
 				if($scope.bagCtrl.items[i].category === category){
 					var item = $scope.bagCtrl.items[i];
-					total = total + parseInt(item.quantity);
+					total = total + (parseInt(item.quantity) || 0);
 				}
 			}
 			this.numClothes = total;
@@ -43,6 +43,26 @@
 		}
 	}]);
 
+	app.controller('DatesController', ['$scope', function($scope){
+		this.startDate = tripStart;
+		this.endDate = tripEnd;
+		$scope.message = '';
+		$scope.duration = 0;
+
+		$scope.getDuration = function(){
+			if($scope.datesCtrl.startDate && $scope.datesCtrl.endDate){
+				this.startDate = $scope.datesCtrl.startDate;
+				this.endDate = $scope.datesCtrl.endDate;
+				// Parsed dates are in milliseconds, convert to days by dividing by 86400000
+				$scope.duration = Math.floor(Date.parse(this.endDate) - Date.parse(this.startDate)) / (24 * 60 * 60 * 1000);
+				$scope.message = 'You are travelling for ' + ($scope.duration + 1) + ' days, ' + $scope.duration + ' nights!';
+			}
+			else{
+				$scope.message = '';
+			}
+		}
+	}]);
+
 	app.directive('tripInfo', function(){
   		return {
   			restrict: 'E', 
@@ -59,10 +79,18 @@
 		};
 	});
 
-	app.directive('categoryTabs', function(){
+	app.directive('dates', function(){
+		return {
+			restrict: 'E',
+			templateUrl: 'dates.html',
+			controllerAs: 'dates'
+		};
+	});
+
+	app.directive('bag', function(){
   		return {
   			restrict: 'E', 
-  			templateUrl: 'category-tabs.html',
+  			templateUrl: 'bag.html',
   			controller: function(){
 				this.tab = 1;
 
@@ -104,6 +132,8 @@
 	});
 
 	var tripLocation = '';
+	var tripStart = '';
+	var tripEnd = '';
 	var totalClothes = 0;
 	var totalToiletries = 0;
 	var totalElectronics = 0;

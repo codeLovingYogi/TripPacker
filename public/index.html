@@ -12,14 +12,13 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/main.css"/>
 </head>
 
-
-<body class="list-group" ng-controller="BagController as bagCtrl">
+<body class="list-group">
 	<header class="jumbotron">
 		<div class="container">
 			<div class="row row-header">
 				<div class="col-xs-12">
 					<h1>{{ "Welcome" + " to TripPacker!" }}</h1>
-					<h2>a packing assistant</h3>
+					<h2>a traveler's packing assistant</h3>
 				</div>
 			</div>
 		</div>
@@ -28,8 +27,8 @@
 	<main class="container">
 		<!-- Info about Trip  -->
 		<trip-info></trip-info>
-		<!-- Category Tabs  -->
-		<category-tabs></category-tabs>
+		<!-- Bag section with Category Tabs  -->
+		<bag></bag>
 	</main>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
