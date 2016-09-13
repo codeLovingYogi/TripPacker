@@ -4,29 +4,43 @@
 	app.controller('BagController', ['$scope', function($scope){
 		this.items = myItems;
 		this.numClothes = totalClothes;
-		// this.numToiletries = totalToiletries;
-		// this.numElectronics = totalElectronics;
+		this.numToiletries = totalToiletries;
+		this.numElectronics = totalElectronics;
+		this.newItem = {};
 
 		$scope.cnter = 0;
 		$scope.counter = function(){
 			$scope.cnter += 1;
 		}
 
+		$scope.addItem = function(){
+			$scope.bag.items.push(this.bag.newItem);
+			this.bag.newItem = {};
+		}
+
 		$scope.getTotal = function(category){
 			var total = 0;
-			for(var i = 0; i < $scope.bagCtrl.items.length; i++){
-				if($scope.bagCtrl.items[i].category === category){
-					var item = $scope.bagCtrl.items[i];
+			for(var i = 0; i < $scope.bag.items.length; i++){
+				if($scope.bag.items[i].category === category){
+					var item = $scope.bag.items[i];
 					total = total + (parseInt(item.quantity) || 0);
 				}
 			}
-			this.numClothes = total;
-			return this.numClothes;
-		} 
+			if(category === 'Clothes'){
+				this.numClothes = total;
+			}
+			else if(category === 'Electronics'){
+				this.numElectronics = total;
+			}
+			else if(category === 'Toiletries'){
+				this.numToiletries = total;
+			}
+			return total;
+		}
 
 		$scope.getCombination = function(){
 			var combination = 0;
-			combination = $scope.bagCtrl.items[0].quantity * $scope.bagCtrl.items[1].quantity;
+			combination = $scope.bag.items[0].quantity * $scope.bag.items[1].quantity;
 			return combination;
 		}
 	}]);
@@ -55,7 +69,7 @@
 				this.endDate = $scope.datesCtrl.endDate;
 				// Parsed dates are in milliseconds, convert to days by dividing by 86400000
 				$scope.duration = Math.floor(Date.parse(this.endDate) - Date.parse(this.startDate)) / (24 * 60 * 60 * 1000);
-				$scope.message = 'You are travelling for ' + ($scope.duration + 1) + ' days, ' + $scope.duration + ' nights!';
+				$scope.message = 'You are travelling for ' + ($scope.duration + 1) + ' day(s), ' + $scope.duration + ' night(s)!';
 			}
 			else{
 				$scope.message = '';

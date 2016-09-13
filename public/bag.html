@@ -1,5 +1,34 @@
-<section ng-controller="BagController as bagCtrl">
+<section ng-controller="BagController as bag">
 	<h2>Let's start packing!</h2>
+		<!--  New Item Form -->
+		<form class="form-inline addItem" name="newItemForm" ng-submit="addItem()">
+			<h4>Add an item:</h4>
+			<!--  Live Preview -->
+			<!-- <blockquote>
+				Category: {{bag.newItem.category}}
+				Item: {{bag.newItem.type}}
+				Quantity: {{bag.newItem.quantity}}
+			</blockquote> -->
+			<!--  New Item Form -->
+			<fieldset class="form-group">
+				<label for="itemCategory"></label>
+				<select ng-model="bag.newItem.category" class="form-control" ng-options="category for category in ['Clothes', 'Toiletries', 'Electronics']" title = "Category" id="itemCategory">
+					<option value="">Category:</option>
+				</select>
+			</fieldset>
+			<fieldset class="form-group">
+				<label for="itemType"></label>
+				<input ng-model="bag.newItem.type" type="text" placeholder="Enter an item" id="itemType" required>
+			</fieldset>
+			<fieldset class="form-group">
+				<label for="itemQuantity"></label>
+				<input ng-model="bag.newItem.quantity" type="number" min="0" placeholder="Quantity" id="itemQuantity">
+			</fieldset>
+			<fieldset class="form-group">
+				<input type="submit" value="Submit"/>
+			</fieldset>
+		</form>
+
 	<ul class="nav nav-pills">
 		<li ng-class="{ active:panel.isSelected(1)}">
 			<a href ng-click=panel.setTab(1)>Clothes</a>
