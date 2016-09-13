@@ -1,5 +1,5 @@
 (function(){
-	var app = angular.module('tripPacker', []);
+	var app = angular.module('tripPacker', ['trip-details', 'bag-contents']);
 
 	app.controller('BagController', ['$scope', function($scope){
 		this.items = myItems;
@@ -76,74 +76,6 @@
 			}
 		}
 	}]);
-
-	app.directive('tripInfo', function(){
-  		return {
-  			restrict: 'E', 
-  			templateUrl: 'trip-info.html',
-  			controllerAs: 'trip'
-  		};	
-  	});
-
-  	app.directive('weather', function(){
-		return {
-			restrict: 'E',
-			templateUrl: 'weather.html',
-			controllerAs: 'weather'
-		};
-	});
-
-	app.directive('dates', function(){
-		return {
-			restrict: 'E',
-			templateUrl: 'dates.html',
-			controllerAs: 'dates'
-		};
-	});
-
-	app.directive('bag', function(){
-  		return {
-  			restrict: 'E', 
-  			templateUrl: 'bag.html',
-  			controller: function(){
-				this.tab = 1;
-
-				this.setTab = function(setTab){
-					this.tab = setTab;
-				};
-
-				this.isSelected = function(checkTab){
-					return this.tab === checkTab;
-				};
-  			},
-  			controllerAs: 'panel'
-  		};	
-  	});
-
-	app.directive('clothes', function(){
-		return {
-			restrict: 'E',
-			templateUrl: 'clothes.html',
-			controllerAs: 'clothing'
-		};
-	});
-
-
-	app.directive('toiletries', function(){
-		return {
-			restrict: 'E',
-			templateUrl: 'toiletries.html',
-			controllerAs: 'toiletry'
-		};
-	});
-
-	app.directive('electronics', function(){
-		return {
-			restrict: 'E',
-			templateUrl: 'electronics.html',
-			controllerAs: 'electronic'
-		};
-	});
 
 	var tripLocation = '';
 	var tripStart = '';
