@@ -1,12 +1,15 @@
-<section class="list-group-item" ng-repeat="clothing in bag.items | filter: { category: 'Clothes' }">
+<section class="list-group-item" ng-repeat="clothing in bag.items | filter: { category: 'Clothes', packed: false }">
 	<table>
-	{{ clothing.type }}
-	<em class="pull-right">
-		<input class="quantity" type="number" min="0" ng-model="clothing.quantity" ng-click="counter()">
-		<td>Quantity: {{ clothing.quantity }}</td>
-	</em>
+		<input type="checkbox" ng-model="clothing.packed">
+		<span class="packed-{{clothing.packed}}">{{ clothing.type }}</span>
+		<em class="pull-right">
+			<input class="quantity" type="number" min="0" ng-model="clothing.quantity" ng-click="counter()">
+			<td class="packed-{{clothing.packed}}">Quantity: {{ clothing.quantity }}</td>
+		</em>
 	</table>
 </section>
+<button class="btn-large" ng-click="toggle((bag.items | filter:{packed:true}))">Hide packed items</button>
+{{test}}
 <aside>
 	<h4>Total Clothes: {{ getTotal('Clothes') }}</h4>
 	<h3>You currently have {{ getCombination() }} outfits!</h3>

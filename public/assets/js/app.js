@@ -1,21 +1,27 @@
 (function(){
 	var app = angular.module('tripPacker', ['trip-details', 'bag-contents']);
 
-	app.controller('BagController', ['$scope', function($scope){
+	app.controller('BagController', ['$scope', '$filter', function($scope, $filter){
 		this.items = myItems;
 		this.numClothes = totalClothes;
 		this.numToiletries = totalToiletries;
 		this.numElectronics = totalElectronics;
-		this.newItem = {};
-
+		
 		$scope.cnter = 0;
 		$scope.counter = function(){
 			$scope.cnter += 1;
 		}
 
 		$scope.addItem = function(){
+			$scope.bag.newItem.packed = false;
 			$scope.bag.items.push(this.bag.newItem);
 			this.bag.newItem = {};
+		}
+
+		$scope.toggle = function(packedItems){
+			//alert('Packed items: ' + packedItems.length);
+			$scope.bag.items = $filter('filter')($scope.bag.items, { packed: false });
+		
 		}
 
 		$scope.getTotal = function(category){
@@ -88,31 +94,37 @@
 			category: 'Clothes',
 			type: 'T-Shirt',
 			quantity: '0',
+			packed: false,
 		},
 		{
 			category: 'Clothes',
 			type: 'Pant',
 			quantity: '0',
+			packed: false,
 		},
 		{
 			category: 'Clothes',
 			type: 'Long-sleeved Shirt',
 			quantity: '0',
+			packed: false,
 		},
 		{
 			category: 'Toiletries',
 			type: 'Toothbrush',
 			quantity: '0',
+			packed: false,
 		},
 		{
 			category: 'Toiletries',
 			type: 'Toothpaste',
 			quantity: '0',
+			packed: false,
 		},
 		{
 			category: 'Electronics',
 			type: 'Laptop',
 			quantity: '0',
+			packed: false,
 		}
 	];
 })();
