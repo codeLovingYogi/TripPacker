@@ -53,12 +53,35 @@
 
 	app.controller('WeatherController', ['$scope', function($scope){
 		this.place = tripLocation;
-		$scope.weatherStatus = '';
-
+		this.weather = tripWeather;
+		
 		$scope.getWeather = function(){
 			if($scope.weatherCtrl.place){
-				//$scope.loc = $scope.weatherCtrl.place;
-				$scope.weatherStatus = 'Getting weather data for ' + $scope.weatherCtrl.place + '!';
+				var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + $scope.weatherCtrl.place +'&appid=0270772329583d1c169479841cd4c878'
+				// var url2 = 'http://api.openweathermap.org/data/2.5/forecast/daily?appid=0270772329583d1c169479841cd4c878&q=' + $scope.weatherCtrl.place
+				var xhr = new XMLHttpRequest();
+				// handle request asynchronously
+				xhr.open('GET', url, true);
+				// event handler function object to check request state, if transaction complete, display response
+				xhr.onload = function (e) {
+				  if (xhr.readyState === 4) {
+				    if (xhr.status === 200) {
+				      console.log(xhr.responseText);
+				      var response = JSON.parse(xhr.responseText);
+				      console.log("Temperature(K): " + response.main.temp);
+				      this.currentTemp = Math.round(response.main.temp * (9/5) - 459.67);
+				      $scope.weatherCtrl.weather = 'Current weather for ' + $scope.weatherCtrl.place + ' is ' + this.currentTemp + ' degrees';
+				      $scope.weatherCtrl.place = '';
+				    } else {
+				      console.error(xhr.statusText);
+				    }
+				  }
+				};
+				xhr.onerror = function (e) {
+				  console.error(xhr.statusText);
+				};
+				// initiate GET request
+				xhr.send(null);	
 			}
 		}
 	}]);
@@ -84,6 +107,7 @@
 	}]);
 
 	var tripLocation = '';
+	var tripWeather = '';
 	var tripStart = '';
 	var tripEnd = '';
 	var totalClothes = 0;

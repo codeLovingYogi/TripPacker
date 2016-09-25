@@ -1,5 +1,8 @@
-.tripInfo, .addItem {
+.tripInfo {
 	padding: 25px;
+	text-align: center;
+}
+.addItem {
 	text-align: center;
 }
 .jumbotron {
@@ -21,7 +24,10 @@ td {
 h3 {
 	text-align: right;
 }
-.packed-true{
+.packed-true {
 	text-decoration: line-through;;
-	color: 	#A9A9A9;
+	color: #A9A9A9;
+}
+.info{
+	color: #428bca;
 }
